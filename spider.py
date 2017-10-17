@@ -58,8 +58,8 @@ saveFile = "usersData4\{0}.text" #存储文件
 saveOffset = 0                  #存储文件命名偏移
 
 class Spider(object):
-    usr_name = '18681821674'
-    pswd = 'north456123789'  # use getpass.getpass to get password，to avoid back echo
+    usr_name = ''
+    pswd = ''  # use getpass.getpass to get password，to avoid back echo
     users = set()
     uQueue = set()
     usrIndex = 0
