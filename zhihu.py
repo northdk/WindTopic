@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-#   FileName:testMySQL.py
 #   Author: North D.K.
 #                   to get millions zhihu usr,
 #                   to find one person named ...
