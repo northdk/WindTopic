@@ -16,7 +16,7 @@
 '''
 
 import requests
-from bs4 import BeautifulSoup as bs
+import BeautifulSoup as bs
 import json
 import time
 import os
@@ -24,7 +24,7 @@ import sys
 import threading
 # import pymysql
 # import re
-from urllib import request as urlReq
+from urllib3 import request as urlReq
 from requests.packages.urllib3.exceptions import InsecureRequestWarning,InsecurePlatformWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 requests.packages.urllib3.disable_warnings(InsecurePlatformWarning)
@@ -95,6 +95,7 @@ class Zhihu(object):
         """通过页面访问确认是否已经登入，这里使用设置页面的链接，因为所有用户通用"""
         loginTestUrl = host+"/settings/profile"
         r = session.get(loginTestUrl,headers = headers,verify = False)
+        print r
         if 200 == int(r.status_code):
             return True
         else:
@@ -178,7 +179,7 @@ class Zhihu(object):
         return None
 
     @staticmethod
-    def urlOpen(url,headers,delay = 0):
+    def urlOpen(url,headers = headers,delay = 0):
         """打开网页，返回Response对象"""
         # print("haha")
         # print(url)

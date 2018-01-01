@@ -3,7 +3,7 @@
 
 import logging
 import requests
-from bs4 import BeautifulSoup as bs
+import BeautifulSoup as bs
 import json
 import time
 import os
@@ -40,8 +40,10 @@ def get_login_data():
     if not login_data['password']:
         login_data['password'] = input("password:")
 
-def get_usr_info_from_topic(topic_name):
-    print("haha")
+def get_usr_info_from_topic(topic_url):
+    print(topic_url)
+    r = requests.get(topic_url)
+    print r
 
 
 if __name__ == '__main__':
@@ -50,4 +52,6 @@ if __name__ == '__main__':
         get_login_data()
     zh = Zhihu(login_data['phone_num'],login_data['password'],'phone')
     zh.makeConnection()
+    topic_url = 'www.zhihu.com/topic/19740929/followers?'
+    r = zh.urlOpen(topic_url)
     # print(login_data)
