@@ -15,6 +15,9 @@
 #                   basic ...
 '''
 
+
+# the improt is outdated ,and need to test all func first
+# the improt is outdated ,and need to test all func first
 import requests
 import BeautifulSoup as bs
 import json
