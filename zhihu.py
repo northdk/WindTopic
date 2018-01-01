@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
+'''
+# need to be refactored:
+    * remove multi threads
+    * just surport basic func with zhihu
+    * the funcs should be in closed loop
+'''
+
 '''
 #   Author: North D.K.
 #                   to get millions zhihu usr,
@@ -14,8 +22,8 @@ import time
 import os
 import sys
 import threading
-import pymysql
-import re
+# import pymysql
+# import re
 from urllib import request as urlReq
 from requests.packages.urllib3.exceptions import InsecureRequestWarning,InsecurePlatformWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -33,11 +41,11 @@ headers = {
     'Referer': 'https://www.zhihu.com/',
 }
 
-# login_data = {'phone_num': 'xxx',
-#              'password': 'xxx',
-#              'Referer': 'https://www.zhihu.com/',
-#              'remember_me': 'true',
-#               }
+login_data = {'phone_num': 'xxx',
+             'password': 'xxx',
+             'Referer': 'https://www.zhihu.com/',
+             'remember_me': 'true',
+              }
 
 session = requests.session()
 login_data = {'remember_me': 'true'}
@@ -94,13 +102,16 @@ class Zhihu(object):
 
     def login(self):
         """使用账号id及pwd登入"""
-        response = session.get(host, headers=headers, verify=False).text
-        # print(response)
+        response = session.get(host, headers=headers, verify=False)
+        print(response.text.encode(response.encoding).decode('gbk2312'))
         soup = bs(response, "html.parser")
+        print(soup)
         xsrf = soup.find('input', {'name': '_xsrf'})['value']
         # print(xsrf)
         login_data['_xsrf'] = xsrf
         login_data['captcha'] = self.getCaptcha()
+        login_data['phone_num'] = input("please input your phone num:")
+        login_data['password'] = input("please input your password:")
         responed = session.post(self.__loginUrl, headers=headers, data=login_data)
         if 0 == responed.json()['r']:
             self.saveCookie()
@@ -132,6 +143,7 @@ class Zhihu(object):
     def makeConnection(self):
         """与目标服务器取得连接"""
         if self.isLogin():
+            print("is already login")
             return
         self.cookie = self.loadCookie()
         if self.cookie:
