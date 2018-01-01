@@ -12,7 +12,7 @@
 '''
 #   Author: North D.K.
 #                   to get millions zhihu usr,
-#                   to find one person named ...
+#                   basic ...
 '''
 
 import requests
