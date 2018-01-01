@@ -34,8 +34,8 @@ headers = {
     'Referer': 'https://www.zhihu.com/',
 }
 
-# login_data = {'phone_num': '18681821674',
-#              'password': 'north456123789',
+# login_data = {'phone_num': 'xxx',
+#              'password': 'xxx',
 #              'Referer': 'https://www.zhihu.com/',
 #              'remember_me': 'true',
 #               }
