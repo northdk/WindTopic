@@ -36,8 +36,8 @@ from zhihu import Usr
 import threading
 import time
 
-usr_name = '18681821674'
-pswd = 'north456123789'
+usr_name = ''
+pswd = ''
 zh = Zhihu(usr_name,pswd,loginType='phone')
 
 testCount = -1
